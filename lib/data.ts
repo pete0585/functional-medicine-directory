@@ -136,3 +136,16 @@ export async function getRecentListings(limit = 6): Promise<Listing[]> {
     .limit(limit)
   return (data as Listing[]) ?? []
 }
+
+export async function getListingsByCity(state: string, city: string, limit = 12): Promise<Listing[]> {
+  const supabase = await createClient()
+  const { data } = await supabase
+    .from(TABLE)
+    .select('*')
+    .eq('state', state)
+    .eq('city', city)
+    .eq('is_active', true)
+    .order('listing_tier_rank', { ascending: true })
+    .limit(limit)
+  return (data as Listing[]) ?? []
+}
