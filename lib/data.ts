@@ -91,6 +91,7 @@ export async function getListingCount(): Promise<number> {
     .from(TABLE)
     .select('*', { count: 'exact', head: true })
     .eq('is_active', true)
+    .eq('is_approved', true)
   return count ?? 0
 }
 
