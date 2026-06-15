@@ -6,12 +6,13 @@ import { formatPhone, formatWebsite } from '@/lib/utils'
 
 interface ListingDetailProps {
   listing: Listing
+  monthlyViews: number
 }
 
-export default function ListingDetail({ listing }: ListingDetailProps) {
+export default function ListingDetail({ listing, monthlyViews }: ListingDetailProps) {
   const isFeatured = listing.listing_tier === 'featured'
   const isVerified = listing.listing_tier === 'verified' || isFeatured
-  const isClaimed = !!listing.claimed_at
+  const isClaimed = listing.listing_tier !== 'unclaimed' && listing.listing_tier != null
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -54,7 +55,7 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
             </div>
           </div>
 
-          {listing.bio && (
+          {isClaimed && listing.bio && (
             <div className="mt-6">
               <h2 className="text-sm font-semibold text-slate-700 mb-2">About</h2>
               <p className="text-slate-600 leading-relaxed">{listing.bio}</p>
@@ -83,6 +84,23 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
             </div>
           )}
         </div>
+
+        {/* Stats dashboard for claimed listings */}
+        {isClaimed && (
+          <div className='rounded-xl border border-blue-200 bg-blue-50 p-4'>
+            <p className='text-xs font-semibold uppercase tracking-wide text-blue-600'>Profile Activity</p>
+            <p className='mt-1 text-3xl font-bold text-blue-900'>{monthlyViews}</p>
+            <p className='text-sm text-blue-700'>people viewed your profile this month</p>
+            {listing.listing_tier === 'free' && (
+              <p className='mt-2 text-xs text-blue-600'>
+                0 could contact you.{' '}
+                <a href={`/claim/${listing.id}?upgrade=true`} className='underline font-medium'>
+                  Upgrade to be reachable →
+                </a>
+              </p>
+            )}
+          </div>
+        )}
 
         {!isClaimed && (
           <div className="card p-6 border-dashed border-2 border-cream-300 bg-teal-50">
@@ -123,24 +141,40 @@ export default function ListingDetail({ listing }: ListingDetailProps) {
                 </div>
               </div>
             )}
-            {listing.phone && (
-              <div className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-teal-600 shrink-0" />
-                <a href={`tel:${listing.phone}`} className="text-sm text-teal-700 hover:text-teal-900 font-medium">
-                  {formatPhone(listing.phone)}
-                </a>
-              </div>
-            )}
-            {listing.website && (
-              <div className="flex items-center gap-3">
-                <Globe className="h-4 w-4 text-teal-600 shrink-0" />
+            {isClaimed ? (
+              <>
+                {listing.phone && (
+                  <div className="flex items-center gap-3">
+                    <Phone className="h-4 w-4 text-teal-600 shrink-0" />
+                    <a href={`tel:${listing.phone}`} className="text-sm text-teal-700 hover:text-teal-900 font-medium">
+                      {formatPhone(listing.phone)}
+                    </a>
+                  </div>
+                )}
+                {listing.website && (
+                  <div className="flex items-center gap-3">
+                    <Globe className="h-4 w-4 text-teal-600 shrink-0" />
+                    <a
+                      href={listing.website.startsWith('http') ? listing.website : `https://${listing.website}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-teal-700 hover:text-teal-900 font-medium truncate"
+                    >
+                      {formatWebsite(listing.website)}
+                    </a>
+                  </div>
+                )}
+              </>
+            ) : (
+              <div className='rounded-lg border border-gray-200 bg-gray-50 p-4 text-center'>
+                <p className='text-sm text-gray-500'>
+                  Phone, website, and bio are only visible after this provider claims their listing.
+                </p>
                 <a
-                  href={listing.website.startsWith('http') ? listing.website : `https://${listing.website}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-sm text-teal-700 hover:text-teal-900 font-medium truncate"
+                  href={`/claim/${listing.id}`}
+                  className='mt-2 inline-block text-sm font-medium text-blue-600 hover:underline'
                 >
-                  {formatWebsite(listing.website)}
+                  Is this you? Claim your free profile →
                 </a>
               </div>
             )}
