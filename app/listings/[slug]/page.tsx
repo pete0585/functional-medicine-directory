@@ -2,7 +2,9 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { getListingBySlug } from '@/lib/data'
 import ListingDetail from '@/components/ListingDetail'
+import { ViewTracker } from '@/components/ViewTracker'
 import { PRACTITIONER_TYPES } from '@/types'
+import { createServiceClient } from '@/lib/supabase/server'
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -33,6 +35,16 @@ export default async function ListingPage({ params }: PageProps) {
   const listing = await getListingBySlug(slug).catch(() => null)
 
   if (!listing) notFound()
+
+  const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
+  const supabase = await createServiceClient()
+  const { count: viewCount } = await supabase
+    .from('listing_views')
+    .select('*', { count: 'exact', head: true })
+    .eq('directory_slug', 'functional-medicine')
+    .eq('listing_id', String(listing.id))
+    .gte('viewed_at', monthStart)
+  const monthlyViews = viewCount ?? 0
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -67,6 +79,8 @@ export default async function ListingPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
+      <ViewTracker listingId={String(listing.id)} directorySlug='functional-medicine' />
+
       <nav className="mb-6 flex items-center gap-2 text-sm text-slate-400">
         <a href="/" className="hover:text-teal-700 transition-colors">Home</a>
         <span>/</span>
@@ -81,7 +95,7 @@ export default async function ListingPage({ params }: PageProps) {
         <span className="text-slate-600 font-medium truncate">{listing.full_name}</span>
       </nav>
 
-      <ListingDetail listing={listing} />
+      <ListingDetail listing={listing} monthlyViews={monthlyViews} />
 
       <div className="mt-12 pt-8 border-t border-cream-300">
         <p className="text-xs text-slate-400 text-center">
