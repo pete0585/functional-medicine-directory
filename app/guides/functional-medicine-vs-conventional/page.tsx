@@ -134,7 +134,7 @@ export default function FunctionalMedicineVsConventionalPage() {
           <ul className="space-y-2">
             {[
               'Your workups are "normal" but you feel chronically unwell',
-              'Fatigue, brain fog, joint pain, or gut problems that haven't responded to standard treatment',
+              "Fatigue, brain fog, joint pain, or gut problems that haven't responded to standard treatment",
               'Autoimmune conditions where conventional care manages but does not investigate triggers',
               'Thyroid symptoms with a normal TSH (the only thyroid marker most physicians check)',
               'Hormonal imbalance that does not rise to the level of a diagnosable endocrine disorder',
