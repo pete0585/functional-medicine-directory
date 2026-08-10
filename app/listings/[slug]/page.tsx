@@ -46,13 +46,15 @@ export default async function ListingPage({ params }: PageProps) {
     .gte('viewed_at', monthStart)
   const monthlyViews = viewCount ?? 0
 
+  const isClaimed = listing.listing_tier !== 'unclaimed' && listing.listing_tier != null
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Physician',
     name: listing.full_name,
     description: listing.bio ?? `Functional medicine practitioner in ${listing.city}, ${listing.state}`,
-    telephone: listing.phone,
-    url: listing.website,
+    telephone: isClaimed ? (listing.phone ?? undefined) : undefined,
+    url: isClaimed ? (listing.website ?? undefined) : undefined,
     address: {
       '@type': 'PostalAddress',
       streetAddress: listing.address,
