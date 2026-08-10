@@ -4,6 +4,8 @@ import { CATEGORIES } from '@/types'
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://functionalmddirectory.com'
 
+export const dynamic = 'force-dynamic'
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createServiceClient()
 
@@ -11,7 +13,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .from('fm_listings')
     .select('slug, updated_at')
     .eq('is_active', true)
-    .eq('is_approved', true)
+    .range(0, 9999)
 
   const listingUrls: MetadataRoute.Sitemap = (listings ?? []).map((l) => ({
     url: `${BASE_URL}/listings/${l.slug}`,
