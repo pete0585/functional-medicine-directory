@@ -9,7 +9,7 @@ import { CATEGORIES } from '@/types'
 export const metadata: Metadata = {
   title: 'Find a Functional Medicine Doctor Near You | FunctionalMDDirectory.com',
   description:
-    'Find an IFM-certified functional medicine doctor near you. Search integrative medicine specialists, root cause physicians, and holistic practitioners by location and specialty.',
+    'Find an IFM-certified functional medicine doctor near you. Search integrative medicine specialists and root cause physicians by location.',
 }
 
 const TOP_CITIES = [
