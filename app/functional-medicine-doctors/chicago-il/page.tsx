@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Chicago, IL | FunctionalMDDirectory.com',
   description:
     'Find functional medicine doctors in Chicago, IL. Browse IFM-certified physicians and integrative specialists serving Chicago and the greater Midwest metro.',
+  alternates: {
+    canonical: cityPageUrl('chicago-il'),
+  },
 }
 
 export const revalidate = 86400

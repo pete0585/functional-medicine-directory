@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Miami, FL | FunctionalMDDirectory.com',
   description:
     'Find functional medicine doctors in Miami, FL. Browse IFM-certified physicians, integrative specialists, and root-cause medicine practitioners serving Miami, Boca Raton, Fort Lauderdale, and South Florida.',
+  alternates: {
+    canonical: cityPageUrl('miami-fl'),
+  },
 }
 
 export const revalidate = 86400

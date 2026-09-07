@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Denver, CO | FunctionalMDDirectory.com',
   description:
     'Find top functional medicine doctors in Denver, CO. Browse IFM-certified physicians, integrative specialists, and root cause practitioners accepting new patients in Denver.',
+  alternates: {
+    canonical: cityPageUrl('denver-co'),
+  },
 }
 
 const faqSchema = {

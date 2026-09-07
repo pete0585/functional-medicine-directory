@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Los Angeles, CA | FunctionalMDDirectory.com',
   description:
     'Find functional medicine doctors in Los Angeles, CA. Browse IFM-certified physicians, licensed naturopathic doctors, and integrative specialists serving LA, Santa Monica, Beverly Hills, and the greater Southern California metro.',
+  alternates: {
+    canonical: cityPageUrl('los-angeles-ca'),
+  },
 }
 
 export const revalidate = 86400

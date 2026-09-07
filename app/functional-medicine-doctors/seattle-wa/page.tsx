@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Seattle, WA | FunctionalMDDirectory.com',
   description:
     'Find top functional medicine doctors in Seattle, WA. Browse IFM-certified physicians, licensed naturopathic doctors (NDs), and integrative specialists serving King County and the greater Seattle metro.',
+  alternates: {
+    canonical: cityPageUrl('seattle-wa'),
+  },
 }
 
 export const revalidate = 86400

@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Austin, TX | FunctionalMDDirectory.com',
   description:
     'Find top functional medicine doctors in Austin, TX. Browse IFM-certified physicians, integrative specialists, and root cause practitioners accepting new patients in Austin.',
+  alternates: {
+    canonical: cityPageUrl('austin-tx'),
+  },
 }
 
 const faqSchema = {
