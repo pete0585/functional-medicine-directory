@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Portland, OR | FunctionalMDDirectory.com',
   description:
     'Find top functional medicine doctors in Portland, OR. Portland has one of the highest concentrations of NDs in the US — browse IFM-certified physicians, licensed naturopathic doctors, and OHSU-area integrative specialists.',
+  alternates: {
+    canonical: cityPageUrl('portland-or'),
+  },
 }
 
 export const revalidate = 86400

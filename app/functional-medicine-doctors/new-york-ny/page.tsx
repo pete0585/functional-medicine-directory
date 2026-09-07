@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in New York, NY | FunctionalMDDirectory.com',
   description:
     'Find functional medicine doctors in New York, NY. Browse IFM-certified physicians, licensed NDs, and integrative specialists in Manhattan, Brooklyn, and the greater NYC metro.',
+  alternates: {
+    canonical: cityPageUrl('new-york-ny'),
+  },
 }
 
 export const revalidate = 86400

@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Nashville, TN | FunctionalMDDirectory.com',
   description:
     'Find top functional medicine doctors in Nashville, TN. Browse IFM-certified physicians and integrative specialists in Nashville, Brentwood, and Franklin — serving Middle Tennessee.',
+  alternates: {
+    canonical: cityPageUrl('nashville-tn'),
+  },
 }
 
 export const revalidate = 86400

@@ -1,10 +1,14 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
+import { cityPageUrl } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Best Functional Medicine Doctor in Arlington, TX | Functional Medicine Doctor Directory",
   description: "Find functional medicine doctor in Arlington, Texas. 28+ listed. Filter by city and compare providers.",
+  alternates: {
+    canonical: cityPageUrl("arlington-tx"),
+  },
 }
 
 async function getListings() {

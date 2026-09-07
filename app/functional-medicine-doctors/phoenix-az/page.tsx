@@ -2,11 +2,15 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import ListingCard from '@/components/ListingCard'
 import { getListingsByCity } from '@/lib/data'
+import { cityPageUrl } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Functional Medicine Doctors in Phoenix, AZ | FunctionalMDDirectory.com',
   description:
     'Find functional medicine doctors in Phoenix, AZ. Browse IFM-certified physicians and integrative practitioners serving Phoenix, Scottsdale, Tempe, and the greater Valley of the Sun.',
+  alternates: {
+    canonical: cityPageUrl('phoenix-az'),
+  },
 }
 
 export const revalidate = 86400
