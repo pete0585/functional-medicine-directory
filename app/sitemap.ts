@@ -1,3 +1,4 @@
+import {articles as editorialArticles} from '@/lib/editorial-blog'
 import { MetadataRoute } from 'next'
 import { getCityPageSlugs } from '@/lib/city-pages'
 import { BASE, cityPageUrl } from '@/lib/site'
@@ -6,7 +7,7 @@ import { CATEGORIES } from '@/types'
 
 export const dynamic = 'force-dynamic'
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+async function originalSitemap(): Promise<MetadataRoute.Sitemap> {
   const supabase = await createServiceClient()
 
   const { data: listings } = await supabase
@@ -60,3 +61,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...listingUrls,
   ]
 }
+
+export default async function editorialSitemap():Promise<MetadataRoute.Sitemap>{const existing=await originalSitemap();const site="https://functionalmddirectory.com";return [...existing,{url:site+'/blog',changeFrequency:'weekly'},...editorialArticles().map(p=>({url:site+'/blog/'+p.slug,lastModified:new Date(p.date),changeFrequency:'monthly' as const}))]}
