@@ -43,21 +43,6 @@ export default function ClaimPageClient({ listing }: ClaimProps) {
       .finally(() => setVerifying(false))
   }, [token, listing.id, verified, verifyError])
 
-  useEffect(() => {
-    if (!verified) return
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
-    const monthStart = new Date(new Date().getFullYear(), new Date().getMonth(), 1).toISOString()
-    supabase
-      .from('listing_views')
-      .select('*', { count: 'exact', head: true })
-      .eq('directory_slug', 'functional-medicine')
-      .eq('listing_id', listing.id)
-      .gte('viewed_at', monthStart)
-      .then(({ count }) => setMonthlyViews(count ?? 0))
-  }, [verified, listing.id])
 
   const handleSendToken = async (e: React.FormEvent) => {
     e.preventDefault()
