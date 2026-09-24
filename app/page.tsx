@@ -54,16 +54,22 @@ export default async function HomePage() {
           </div>
 
           <h1 className="text-4xl font-bold text-slate-900 leading-tight sm:text-5xl md:text-6xl tracking-tight">
-            Find a doctor who treats{' '}
-            <span className="text-teal-700">root causes</span>,{' '}
-            <br className="hidden sm:block" />
-            not just symptoms
+            Find trusted functional medicine doctors near you
           </h1>
 
           <p className="mt-5 text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-            Conventional medicine treats symptoms. Functional medicine finds why. Search
-            IFM-certified physicians, integrative specialists, and root cause practitioners
-            who actually have time to listen.
+            Browse verified functional medicine practitioners by certification and location — and connect directly. Free, always.
+          </p>
+          <p className="text-sm text-gray-500 mt-4">
+            Are you a functional medicine doctor?{' '}
+            <a
+              href="https://studiozerohq.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:opacity-80"
+            >
+              List your practice free →
+            </a>
           </p>
 
           <div className="mt-8 flex justify-center">
