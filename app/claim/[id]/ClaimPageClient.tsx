@@ -108,7 +108,7 @@ export default function ClaimPageClient({ listing }: ClaimProps) {
         </div>
 
           <Link
-            href={`/listings/${listing.slug}`}
+            href={`/listings/${listing.id}`}
             className="btn-primary w-full text-center"
           >
             View My Listing
