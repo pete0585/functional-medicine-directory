@@ -79,7 +79,6 @@ export async function getFeaturedListings(limit = 6): Promise<Listing[]> {
     .select('*')
     .eq('is_active', true)
     .eq('is_approved', true)
-    .in('listing_tier', ['featured', 'verified'])
     .order('listing_tier_rank', { ascending: true })
     .limit(limit)
   return (data as Listing[]) ?? []
