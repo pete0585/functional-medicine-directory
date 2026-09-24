@@ -128,10 +128,6 @@ export default function ClaimPageClient({ listing }: ClaimProps) {
           >
             View My Listing
           </Link>
-            <Link href={`/listings/${listing.id}`} className="btn-secondary w-full block text-center text-sm">
-              View My Listing
-            </Link>
-          </div>
         </div>
       </div>
     )
