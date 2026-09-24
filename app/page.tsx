@@ -146,7 +146,7 @@ export default async function HomePage() {
             <div className="flex items-center justify-between mb-10">
               <div>
                 <h2 className="section-title">Featured Practitioners</h2>
-                <p className="section-subtitle">Verified functional medicine doctors with premium listings</p>
+                <p className="section-subtitle">Verified functional medicine doctors with verified listings</p>
               </div>
               <Link href="/listings" className="btn-secondary hidden sm:flex text-sm py-2">
                 View All <ArrowRight className="h-4 w-4" />
@@ -237,9 +237,7 @@ export default async function HomePage() {
           <h2 className="text-2xl font-bold text-slate-900 mb-3">Are you a functional medicine practitioner?</h2>
           <p className="text-slate-600 mb-6">
             Join thousands of functional medicine doctors, NPs, and integrative practitioners
-            who list on FunctionalMDDirectory.com. Free basic listing. Upgrade to Verified ($149/yr)
-            for premium placement and a verified badge.
-          </p>
+            who list on FunctionalMDDirectory.com. Free basic listing.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <Link href="/submit" className="btn-amber">
               List Your Practice — Free
