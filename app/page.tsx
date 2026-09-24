@@ -5,6 +5,7 @@ import SearchBar from '@/components/SearchBar'
 import ListingCard from '@/components/ListingCard'
 import { getFeaturedListings, getListingCount } from '@/lib/data'
 import { CATEGORIES } from '@/types'
+import NewsletterSignup from '@/components/NewsletterSignup'
 
 export const metadata: Metadata = {
   title: 'Find a Functional Medicine Doctor Near You | FunctionalMDDirectory.com',
