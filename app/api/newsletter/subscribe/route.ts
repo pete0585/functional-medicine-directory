@@ -7,7 +7,7 @@ const NICHE = 'functional-medicine' as const
 const DIRECTORY_SLUG = 'functional-medicine-directory' as const
 const NEWSLETTER_NAME = 'The Whole-Care Footnote' as const
 const CONFIRM_URL_BASE = 'https://www.functionalmddirectory.com/newsletter/confirm'
-const DASHBOARD_URL = 'https://aidam.thestrategicveteran.com'
+const DASHBOARD_URL = 'https://aidam.studiozerohq.com'
 
 export async function POST(req: NextRequest) {
   let email: string, first_name: string | undefined
