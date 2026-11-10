@@ -41,11 +41,11 @@ export default function SubmitForm() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data),
             });
-            if (res.ok) {
+            const body = await res.json().catch(() => ({}));
+            if (res.ok && body.success === true && body.status === 'pending_review') {
                 setSubmitted(true);
             }
             else {
-                const body = await res.json().catch(() => ({}));
                 setError((body as {
                     error?: string;
                 }).error ?? 'Something went wrong. Please try again.');
@@ -64,8 +64,7 @@ export default function SubmitForm() {
         </div>
         <h2 className="text-2xl font-bold text-slate-900 mb-2">Listing Submitted!</h2>
         <p className="text-slate-500">
-          Your practice has been submitted for review. We&apos;ll have it live within 24 hours.
-          You&apos;ll receive an email when it&apos;s approved.
+          Your submission is saved for review. It is not public yet. No email has been sent.
         </p>
       </div>);
     }
