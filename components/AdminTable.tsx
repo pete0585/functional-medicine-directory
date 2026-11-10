@@ -65,7 +65,7 @@ export default function AdminTable({ listings, onApprove, onReject }: AdminTable
                   {listing.email && <p className="text-xs text-slate-500">{listing.email}</p>}
                   {listing.website && (
                     <a
-                      href={listing.website}
+                      data-directory-action="website_click" href={listing.website}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1 text-xs text-teal-600 hover:text-teal-800"
