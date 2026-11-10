@@ -95,7 +95,7 @@ export default function ListingDetail({ listing, monthlyViews }: ListingDetailPr
                   </div>)}
                 {listing.website && (<div className="flex items-center gap-3">
                     <Globe className="h-4 w-4 text-teal-600 shrink-0"/>
-                    <a href={listing.website.startsWith('http') ? listing.website : `https://${listing.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-teal-700 hover:text-teal-900 font-medium truncate">
+                    <a data-directory-action="website_click" href={listing.website.startsWith('http') ? listing.website : `https://${listing.website}`} target="_blank" rel="noopener noreferrer" className="text-sm text-teal-700 hover:text-teal-900 font-medium truncate">
                       {formatWebsite(listing.website)}
                     </a>
                   </div>)}
